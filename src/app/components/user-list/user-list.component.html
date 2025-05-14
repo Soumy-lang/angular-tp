@@ -1,6 +1,10 @@
-<h2>Utilisateurs</h2>
-<ul>
-  <li *ngFor="let user of users">
-    <a [routerLink]="['/users', user.id]">{{ user.name }}</a>
-  </li>
-</ul>
+<app-header></app-header>
+<h2 class="my-4 text-center">Tous les utilisateurs</h2>
+
+<div class="container">
+  <div class="row g-4">
+    <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let user of users">
+      <app-user-card [user]="user"></app-user-card>
+    </div>
+  </div>
+</div>

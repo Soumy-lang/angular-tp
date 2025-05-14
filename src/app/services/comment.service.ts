@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { PostComment } from '../models/post-comment.model';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -10,8 +11,8 @@ export class CommentService {
 
   constructor(private http: HttpClient) {}
 
-  getCommentsByPost(postId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${this.apiUrl}?postId=${postId}`);
+  getCommentsByPost(postId: number): Observable<PostComment[]> {
+    return this.http.get<PostComment[]>(`${this.apiUrl}?postId=${postId}`);
   }
 
 }

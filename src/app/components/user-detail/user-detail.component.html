@@ -1,1 +1,56 @@
-<p>user-detail works!</p>
+<app-header></app-header>
+<div class="container mt-4">
+  <div *ngIf="user; else loading">
+    <!-- User Detail Card -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h3 class="card-title mb-3">{{ user.name }}</h3>
+        <p class="mb-1"><strong>Nom d'utilisateur:</strong> {{ user.username }}</p>
+        <p class="mb-1"><strong>Email:</strong> <a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+        <p class="mb-1"><strong>Téléphone:</strong> {{ user.phone }}</p>
+        <p class="mb-1"><strong>Site web:</strong>
+          <a [href]="'https://' + user.website" target="_blank">{{ user.website }}</a>
+        </p>
+
+        <hr>
+
+        <h5 class="mt-3">Adresse</h5>
+        <p class="mb-1">
+          {{ user.address.suite }}, {{ user.address.street }}<br>
+          {{ user.address.city }} - {{ user.address.zipcode }}
+        </p>
+        <p class="mb-1 text-muted"><small>Geo : lat {{ user.address.geo.lat }}, lng {{ user.address.geo.lng }}</small></p>
+
+        <hr>
+
+        <h5 class="mt-3">Entreprise</h5>
+        <p class="mb-1"><strong>{{ user.company.name }}</strong></p>
+        <p class="mb-1"><em>"{{ user.company.catchPhrase }}"</em></p>
+        <p class="mb-1 text-muted"><small>{{ user.company.bs }}</small></p>
+      </div>
+    </div>
+
+    <!-- User Posts -->
+    <h4 class="mb-3">Articles publiés</h4>
+    <div class="row g-3">
+      <div class="col-md-6" *ngFor="let post of posts">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text text-truncate" style="max-height: 4.5em;">{{ post.body }}</p>
+            <a [routerLink]="['/posts', post.id]" class="btn btn-sm btn-outline-primary">Voir le post</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <ng-template #loading>
+    <div class="text-center mt-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Chargement...</span>
+      </div>
+    </div>
+  </ng-template>
+</div>

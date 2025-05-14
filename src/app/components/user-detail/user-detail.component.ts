@@ -1,13 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../models/user.model';
 import {Post} from '../../models/post.model';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {PostService} from '../../services/post.service';
+import {NgForOf, NgIf} from '@angular/common';
+import {HeaderComponent} from '../header/header.component';
 
 @Component({
   selector: 'app-user-detail',
-  imports: [],
+  imports: [
+    RouterLink,
+    NgForOf,
+    NgIf,
+    HeaderComponent
+  ],
   templateUrl: './user-detail.component.html',
   standalone: true,
   styleUrl: './user-detail.component.css'

@@ -1,0 +1,7 @@
+.nav-link.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+ul{
+  list-style-type: none;
+}

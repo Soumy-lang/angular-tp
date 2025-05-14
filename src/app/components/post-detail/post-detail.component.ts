@@ -1,14 +1,23 @@
 import {Component, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import {Post} from '../../models/post.model';
 import {User} from '../../models/user.model';
-import {ActivatedRoute} from '@angular/router';
+import { PostComment } from '../../models/post-comment.model';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {PostService} from '../../services/post.service';
 import {CommentService} from '../../services/comment.service';
 import {UserService} from '../../services/user.service';
+import {HeaderComponent} from '../header/header.component';
 
 @Component({
   selector: 'app-post-detail',
-  imports: [],
+  imports: [
+    CommonModule,
+    RouterModule,
+    RouterLink,
+    HeaderComponent
+  ],
   templateUrl: './post-detail.component.html',
   standalone: true,
   styleUrl: './post-detail.component.css'
@@ -16,7 +25,7 @@ import {UserService} from '../../services/user.service';
 
 export class PostDetailComponent implements OnInit {
   post: Post | undefined;
-  comments: Comment[] = [];
+  comments: PostComment[] = [];
   users: User[] = [];
 
   constructor(
@@ -37,9 +46,8 @@ export class PostDetailComponent implements OnInit {
     });
   }
 
-  getAuthorName(email: string): string {
-    const user = this.users.find(u => u.email === email);
-    return user ? user.name : email;
+  getAuthorUser(email: string): User | undefined {
+    return this.users.find(u => u.email === email);
   }
 }
 
