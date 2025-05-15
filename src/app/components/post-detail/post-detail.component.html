@@ -11,17 +11,16 @@
   <h4 class="mb-3">Tous les commentaires</h4>
   <div *ngFor="let comment of comments" class="card mb-2">
     <div class="card-body">
-      <h5 class="card-title">{{ comment.name }}</h5>
       <p class="card-text">{{ comment.body }}</p>
-      <p class="card-subtitle text-muted">
-        Écrit par :
+      <p></p>
+      Auteur :
         <ng-container *ngIf="getAuthorUser(comment.email); else unknownUser">
           <a *ngIf="getAuthorUser(comment.email) as user" [routerLink]="['/users', user.id]">
             {{ user.name }}
           </a>
         </ng-container>
         <ng-template #unknownUser>{{ comment.email }}</ng-template>
-      </p>
+
     </div>
   </div>
 </div>

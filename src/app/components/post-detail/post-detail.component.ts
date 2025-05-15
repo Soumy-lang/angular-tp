@@ -46,7 +46,7 @@ export class PostDetailComponent implements OnInit {
     });
   }
 
-  getAuthorUser(email: string): User | undefined {
+  getAuthorUser(email: string) {
     return this.users.find(u => u.email === email);
   }
 }
